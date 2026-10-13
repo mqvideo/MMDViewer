@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
+	<ForceDesignerDpiUnaware>true</ForceDesignerDpiUnaware>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Evergine.BulletSharpPInvoke" Version="2023.11.28.20" />
+    <PackageReference Include="Evergine.LibBulletc.Natives" Version="2025.8.29.27" />
+    <PackageReference Include="OpenTK.GLControl" Version="4.0.2" />
+    <PackageReference Include="PMXParser" Version="1.1.1" />
+  </ItemGroup>
+
+</Project>

@@ -918,7 +918,13 @@ void main(){
             bad_verts = 0;
             outlier_verts = 0;
             isolated_verts = 0;
-            if (verts.Length == 0) { model_center = OV3.Zero; model_size = 1f; camera_distance = 2.2f; return; }
+            if (verts.Length == 0) 
+            {
+                model_center = OV3.Zero;
+                model_size = 1f; 
+                camera_distance = 2.2f;
+                return; 
+            }
             bool[] used = new bool[verts.Length];
             int used_count = 0;
             foreach (Surface s in surfs)

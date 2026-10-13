@@ -901,12 +901,15 @@ void main(){
                 start += faces;
             }
         }
-        private static void pack_bone_weight(int out_offset, int raw_index, float weight,
-            int bone_cnt, int[] idx_arr, float[] wt_arr)
+        private static void pack_bone_weight(int out_offset, int raw_index, float weight, int bone_cnt, int[] idx_arr, float[] wt_arr)
         {
             // 骨骼索引为-1（PMX中表示无骨骼）或超出模型骨骼总数权重清零，索引设为0（着色器中有 idx >= 0 检查）
             int idx = raw_index;
-            if (idx < 0 || idx >= bone_cnt) { idx = 0; weight = 0f; }
+            if (idx < 0 || idx >= bone_cnt) 
+            {
+                idx = 0; 
+                weight = 0f; 
+            }
             idx_arr[out_offset] = idx;
             wt_arr[out_offset] = weight;
         }
@@ -921,9 +924,21 @@ void main(){
             foreach (Surface s in surfs)
             {
                 int v1 = s.V1, v2 = s.V2, v3 = s.V3;
-                if (v1 >= 0 && v1 < verts.Length && !used[v1]) { used[v1] = true; used_count++; }
-                if (v2 >= 0 && v2 < verts.Length && !used[v2]) { used[v2] = true; used_count++; }
-                if (v3 >= 0 && v3 < verts.Length && !used[v3]) { used[v3] = true; used_count++; }
+                if (v1 >= 0 && v1 < verts.Length && !used[v1]) 
+                { 
+                    used[v1] = true; 
+                    used_count++; 
+                }
+                if (v2 >= 0 && v2 < verts.Length && !used[v2])
+                { 
+                    used[v2] = true;
+                    used_count++;
+                }
+                if (v3 >= 0 && v3 < verts.Length && !used[v3]) 
+                { 
+                    used[v3] = true;
+                    used_count++; 
+                }
             }
             // 无面数据（异常模型）时回退到全部顶点，避免把包围盒算空
             bool use_face_filter = used_count > 0;
@@ -942,11 +957,21 @@ void main(){
                     bad_verts++;
                     continue;
                 }
-                xs[m] = v.Position.X; ys[m] = v.Position.Y; zs[m] = v.Position.Z;
+                xs[m] = v.Position.X;
+                ys[m] = v.Position.Y;
+                zs[m] = v.Position.Z;
                 m++;
             }
-            if (m == 0) { model_center = OV3.Zero; model_size = 1f; camera_distance = 2.2f; return; } // 全部顶点都无效时的兜底
-            Array.Sort(xs, 0, m); Array.Sort(ys, 0, m); Array.Sort(zs, 0, m);
+            if (m == 0) // 全部顶点都无效时的兜底
+            { 
+                model_center = OV3.Zero;
+                model_size = 1f;
+                camera_distance = 2.2f; 
+                return; 
+            }
+            Array.Sort(xs, 0, m);
+            Array.Sort(ys, 0, m); 
+            Array.Sort(zs, 0, m);
             float cx = xs[m / 2], cy = ys[m / 2], cz = zs[m / 2]; // 中位数中心
             // 到中位数中心的距离中位数，作为本体尺度的稳健估计
             float[] dist = new float[m];

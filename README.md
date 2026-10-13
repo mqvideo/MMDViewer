@@ -35,13 +35,17 @@ dotnet run
 - PMXParser
 - Evergine.BulletSharpPInvoke、Evergine.LibBulletc.Natives
 
-## 致谢
+## 参考项目
 
-实现参考了 saba、babylon-mmd、MikuMikuFlex 以及 three.js。
+- [saba](https://github.com/benikabocha/saba)
+- [babylon-mmd](https://github.com/noname0310/babylon-mmd)
+- [MikuMikuFlex](https://github.com/from-dtx/MikuMikuFlex)
+- [three.js](https://github.com/mrdoob/three.js)
 
 ## 许可证
 
 MIT 许可证，见 [LICENSE](LICENSE)。
+
 本项目与 MMD 官方毫无关系。
 
 [作者个人主页](https://space.bilibili.com/79427854)

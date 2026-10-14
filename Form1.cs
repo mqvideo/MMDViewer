@@ -3391,8 +3391,16 @@ void main(){
                         if (ck.frame > motion.max_frame) { motion.max_frame = ck.frame; }
                     }
                 }
-                if (fs.Position + 4 <= fs.Length) { int light_count = reader.ReadInt32(); reader.ReadBytes(light_count * 28); }
-                if (fs.Position + 4 <= fs.Length) { int shadow_count = reader.ReadInt32(); reader.ReadBytes(shadow_count * 9); }
+                if (fs.Position + 4 <= fs.Length) 
+                { 
+                    int light_count = reader.ReadInt32(); 
+                    reader.ReadBytes(light_count * 28); }
+                
+                if (fs.Position + 4 <= fs.Length) 
+                {
+                    int shadow_count = reader.ReadInt32();
+                    reader.ReadBytes(shadow_count * 9); 
+                }
 
                 // 解析IK启用/禁用状态（模型显示段）
                 if (fs.Position + 4 <= fs.Length)

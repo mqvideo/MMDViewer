@@ -1827,14 +1827,8 @@ void main(){
                 GL.GenerateMipmap(GenerateMipmapTarget.Texture2D);
                 if (GL.GetError() != ErrorCode.NoError) { generate_mipmap = false; }
             }
-            if (generate_mipmap)
-            {
-                GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.LinearMipmapLinear);
-            }
-            else
-            {
-                GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear);
-            }
+            if (generate_mipmap) { GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.LinearMipmapLinear); }
+            else { GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int)TextureMinFilter.Linear); }
             GL.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int)TextureMagFilter.Linear);
             // 各向异性过滤常量
             const int tex_max_aniso = 0x84FE; // GL_TEXTURE_MAX_ANISOTROPY_EXT
@@ -1883,9 +1877,15 @@ void main(){
             GL.ActiveTexture(TextureUnit.Texture3);
             GL.BindTexture(TextureTarget.TextureBuffer, 0);
             GL.ActiveTexture(TextureUnit.Texture0);
-            foreach (int id in textures.Values) { if (id > 0 && id != default_texture) { GL.DeleteTexture(id); } }
+            foreach (int id in textures.Values) 
+            { 
+            if (id > 0 && id != default_texture) { GL.DeleteTexture(id); } 
+            }
             textures.Clear();
-            foreach (int id in toon_textures.Values) { if (id > 0 && id != default_toon_texture) { GL.DeleteTexture(id); } }
+            foreach (int id in toon_textures.Values)
+            {
+            if (id > 0 && id != default_toon_texture) { GL.DeleteTexture(id); } 
+            }
             toon_textures.Clear();
             draw_groups.Clear();
             missing_tex_names.Clear();
@@ -2205,8 +2205,7 @@ void main(){
             bone_frame_map = new Dictionary<string, List<bone_keyframe>>();
             foreach (bone_keyframe kf in current_motion.bone_frames)
             {
-                if (kf.position.X != 0f || kf.position.Y != 0f || kf.position.Z != 0f)
-                { movable_bones.Add(kf.bone_name); }
+                if (kf.position.X != 0f || kf.position.Y != 0f || kf.position.Z != 0f) { movable_bones.Add(kf.bone_name); }
                 if (!bone_frame_map.TryGetValue(kf.bone_name, out List<bone_keyframe>? list))
                 {
                     list = new List<bone_keyframe>();

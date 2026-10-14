@@ -302,9 +302,6 @@ void main(){
                 MessageBox.Show($"解析MMD模型时出错，原因：{ex.Message}\n请把上述的错误原因报告给开发者以解决对应问题。", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-#if !DEBUG // 一般情况下应该能看到模型信息
-            if (!String.IsNullOrEmpty(model.Comment)) { MessageBox.Show(model.Comment, "模型信息", MessageBoxButtons.OK, MessageBoxIcon.Information); }
-#endif
             label1.Text = $"加载的模型：{model.Name}";
             current_motion = null;
             camera_motion = null;
